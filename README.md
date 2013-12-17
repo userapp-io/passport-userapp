@@ -49,7 +49,7 @@ application:
 
 ## Examples
 
-For a complete, working example, refer to the [login example]().
+For a complete, working example, refer to the [login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/login).
 
 ## License
 
