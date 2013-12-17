@@ -1,0 +1,42 @@
+{
+  "name": "passport-userapp",
+  "version": "0.1.0",
+  "description": "Password authentication strategy using UserApp for Passport",
+  "homepage": "http://github.com/userapp-io/passport-userapp",
+  "author": {
+    "name": "Timothy E. Johansson",
+    "email": "timothy.johansson@userapp.io"
+  },
+  "company": {
+    "name": "UserApp",
+    "product": "UserApp",
+    "homepage": "https://www.userapp.io/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/userapp-io/passport-userapp.git"
+  },
+  "main": "./lib/passport-userapp",
+  "dependencies": {
+    "passport": ">= 0.1.1",
+    "userapp": ">= 0.2.3"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "keywords": [
+    "passport",
+    "userapp",
+    "user",
+    "user management",
+    "auth",
+    "authentication",
+    "identity"
+  ]
+}
