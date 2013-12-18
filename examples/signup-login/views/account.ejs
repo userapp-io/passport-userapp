@@ -1,0 +1,14 @@
+<% layout('layout') -%>
+<p>Username: <%= user.username %></p>
+<p>Email: <%= user.email %></p>
+
+<% if(user.groups) { %>
+<div>
+    <p>Groups:</p>
+    <ul>
+    <% for(var i = 0; i<user.groups.length; i++) { %>
+        <li><%= user.groups[i] %></li>
+    <% } %>
+    </ul>
+</div>
+<% } %>
