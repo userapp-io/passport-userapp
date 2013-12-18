@@ -7,6 +7,10 @@ var express = require('express'),
     UserAppStrategy = require('passport-userapp').Strategy;
 
 var users = [];
+var appId = 'YOU-USERAPP-APP-ID'; // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
+
+// Don't for get to init UserApp
+UserApp.initialize({ appId: appId });
 
 // Passport session setup
 passport.serializeUser(function (user, done) {
@@ -27,7 +31,7 @@ passport.deserializeUser(function (username, done) {
 // Use the UserAppStrategy within Passport
 passport.use(
     new UserAppStrategy({
-        appId: '<your appId>' // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
+        appId: appId
     },
     function (userprofile, done) {
         process.nextTick(function () {
@@ -82,9 +86,6 @@ app.get('/signup', function (req, res){
     res.render('signup', { user: false, message:req.flash('error') });
 });
 
-// Don't for get to init UserApp
-UserApp.initialize({appId: "<your app id>"});
-
 app.post('/signup', 
 
     //first we need to create the user in UserApp
@@ -115,7 +116,6 @@ app.post('/signup',
         res.redirect('/');
 });
 
-// POST /login
 app.post('/login',
     passport.authenticate('userapp', { failureRedirect: '/login', failureFlash: 'Invalid username or password.'}),
     function (req, res) {
@@ -123,7 +123,6 @@ app.post('/login',
     }
 );
 
-// GET /logout
 app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
