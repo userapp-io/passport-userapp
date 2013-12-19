@@ -49,7 +49,7 @@ application:
 
 #### User Profile
 
-The user profile follows the [Passport Profile Schema](http://passportjs.org/guide/profile/) when available. Some fields are added to contain all information from the [UserApp User profile](https://app.userapp.io/#/docs/user/#properties).
+The user profile follows the [Passport Profile Schema](http://passportjs.org/guide/profile/) when available. Some fields are added to contain all information from the [UserApp User entity](https://app.userapp.io/#/docs/user/#properties).
 
     { 
         provider: 'userapp',
@@ -67,10 +67,25 @@ The user profile follows the [Passport Profile Schema](http://passportjs.org/gui
         createdAt: unix_timestamp,
         _raw: { /* raw UserApp User profile */ }
     }
+    
+Please note that when working with the [UserApp API](https://app.userapp.io/#/docs/), you will need to create a new user object according to the [User entity](https://app.userapp.io/#/docs/user/#properties). For example `username` => `login`.
 
 ## Examples
 
-For a complete, working example, refer to the [login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/login).
+For a complete, working example, refer to the [login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/login) or the [signup-login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/signup-login).
+
+## Related Modules
+
+- [userapp-nodejs](https://github.com/userapp-io/userapp-nodejs) — Node.js client for accessing the UserApp API
+
+## Help
+
+Contact us via email at support@userapp.io or visit our [support center](https://help.userapp.io).
+
+## Credits
+
+  - [Timothy E. Johansson](https://github.com/timothyej)
+  - [Charlton Roberts](https://github.com/charltoons)
 
 ## License
 
