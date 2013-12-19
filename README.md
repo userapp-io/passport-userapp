@@ -23,7 +23,7 @@ password via a REST call to UserApp. The strategy requires a `verify` callback, 
 credentials and calls `done` providing a user. To be able to use this strategy, you need a [UserApp account](https://app.userapp.io/#/sign-up/), with an [App Id](https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-).
 
     passport.use(new UserAppStrategy({
-            appId: 'YOUR-APP-ID'
+            appId: 'YOU-USERAPP-APP-ID'
         },
         function (userprofile, done) {
             Users.findOrCreate(userprofile, function(err,user) {
@@ -46,6 +46,27 @@ application:
       function(req, res) {
         res.redirect('/');
       });
+
+#### User Profile
+
+The user profile follows the [Passport Profile Schema](http://passportjs.org/guide/profile/) when available. Some fields are added to contain all information from the [UserApp User profile](https://app.userapp.io/#/docs/user/#properties).
+
+    { 
+        provider: 'userapp',
+        id: 'user_id',
+        username: 'login',
+        name: { familyName: 'last_name', givenName: 'first_name' },
+        email: 'email',
+        emails: [ { value: 'email' } ],
+        permissions: { permissionName: { value: boolean, override: boolean } },
+        features: { featureName: { value: boolean, override: boolean } },
+        properties: { propertyName: { value: mixed, override: boolean } },
+        subscription: { price_list_id: 'string', plan_id: 'string', override: boolean },
+        lastLoginAt: unix_timestamp,
+        updatedAt: unix_timestamp,
+        createdAt: unix_timestamp,
+        _raw: { /* raw UserApp User profile */ }
+    }
 
 ## Examples
 
