@@ -36,7 +36,7 @@ passport.deserializeUser(function (username, done) {
 // Use the UserAppStrategy within Passport
 passport.use(
     new UserAppStrategy({
-        appId: '52b8a5d2dca15' // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
+        appId: 'YOUR-USERAPP-APP-ID' // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
     },
     function (userprofile, done) {
         process.nextTick(function () {

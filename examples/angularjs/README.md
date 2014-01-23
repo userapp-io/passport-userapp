@@ -8,6 +8,10 @@ Example with AngularJS as the front-end and Node.js+Passport as the back-end. Au
 
 * Get your UserApp [App Id](https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-) and replace 'YOUR-USERAPP-APP-ID' in `app.js` and `public/js/app.js` with that id.
 
+* Install all the dependencies:
+
+  `$ npm install`
+
 * Start the Node.js server
 
   `$ node app.js`

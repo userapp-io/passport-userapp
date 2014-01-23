@@ -8,6 +8,10 @@ Example of how to use the UserApp Passport strategy for authenticating using an 
 
 * Get your UserApp [App Id](https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-) and replace 'YOUR-USERAPP-APP-ID' in `app.js` with that id.
 
+* Install all the dependencies:
+
+  `$ npm install`
+
 * Start the Node.js server
 
   `$ node app.js`
