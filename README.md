@@ -1,10 +1,10 @@
 # Passport-UserApp
 
-Password authentication strategy using [UserApp](https://www.userapp.io) for [Passport](http://passportjs.org/).
+Password and token authentication strategy using [UserApp](https://www.userapp.io) for [Passport](http://passportjs.org/).
 
 *UserApp is a cloud-based user management API for web apps with the purpose to relieve developers from having to program logic for user authentication, sign-up, invoicing, feature/property/permission management, and more.*
 
-This module lets you authenticate using a username and password in your Node.js
+This module lets you authenticate using either a username and password or a session token in your Node.js
 applications. By plugging into Passport, UserApp authentication can be easily and
 unobtrusively integrated into any application or framework that supports
 [Connect](http://www.senchalabs.org/connect/)-style middleware, including
@@ -18,8 +18,8 @@ unobtrusively integrated into any application or framework that supports
 
 #### Configure Strategy
 
-The userapp authentication strategy authenticates users using a username and
-password via a REST call to UserApp. The strategy requires a `verify` callback, which accepts these
+The userapp authentication strategy authenticates users using either a username and
+password or a session token via a REST call to UserApp. The strategy requires a `verify` callback, which accepts these
 credentials and calls `done` providing a user. To be able to use this strategy, you need a [UserApp account](https://app.userapp.io/#/sign-up/), with an [App Id](https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-).
 
     passport.use(new UserAppStrategy({
@@ -33,10 +33,10 @@ credentials and calls `done` providing a user. To be able to use this strategy, 
         }
     ));
 
-#### Authenticate Requests
+#### Authenticate Requests Using Username/Password
 
 Use `passport.authenticate()`, specifying the `'userapp'` strategy, to
-authenticate requests.
+authenticate requests using a username and password. The username and password should be sent as POST parameters with the request.
 
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
@@ -45,6 +45,20 @@ application:
       passport.authenticate('userapp', { failureRedirect: '/login' }),
       function(req, res) {
         res.redirect('/');
+      });
+
+#### Authenticate Requests Using a Session Token
+
+Use `passport.authenticate()`, specifying the `'userapp'` strategy, to
+authenticate requests using a session token. The token should be sent as a cookie named `ua_session_token` (automatically set by the front-end integrations such as the [AngularJS module](https://github.com/userapp-io/userapp-angular)).
+
+For example, as route middleware in an [Express](http://expressjs.com/)
+application:
+
+    app.post('/api/call', passport.authenticate('userapp'),
+      function(req, res) {
+        // Return some relevant data, for example the logged in user, articles, etc.
+        res.send({ user: req.user });
       });
 
 #### User Profile
@@ -74,6 +88,8 @@ Please note that when working with the [UserApp API](https://app.userapp.io/#/do
 
 For a complete, working example, refer to the [login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/login) or the [signup-login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/signup-login).
 
+For an example using AngularJS as front-end, refer to the [AngularJS example](https://github.com/userapp-io/passport-userapp/tree/master/examples/angularjs).
+
 ## Related Modules
 
 - [userapp-nodejs](https://github.com/userapp-io/userapp-nodejs) — Node.js client for accessing the UserApp API
@@ -91,7 +107,7 @@ Contact us via email at support@userapp.io or visit our [support center](https:/
 
 (The MIT License)
 
-Copyright (c) 2013 UserApp
+Copyright (c) 2014 UserApp
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

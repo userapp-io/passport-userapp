@@ -7,7 +7,7 @@ var express = require('express'),
     UserAppStrategy = require('passport-userapp').Strategy;
 
 var users = [];
-var appId = 'YOU-USERAPP-APP-ID'; // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
+var appId = 'YOUR-USERAPP-APP-ID'; // Your UserApp App Id: https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-
 
 // Don't for get to init UserApp
 UserApp.initialize({ appId: appId });
