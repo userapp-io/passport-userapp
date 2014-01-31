@@ -2,7 +2,7 @@
 
 <https://github.com/userapp-io/passport-userapp>
 
-Example with AngularJS as the front-end and Node.js+Passport as the back-end. Authentication to UserApp is handled from the front-end by the UserApp module, while authorization to the back-end API is done by providing the session token with a cookie. The UserApp Passport strategy is then validating that session token before authorizing the API calls.
+Example with AngularJS as the front-end and Node.js+Passport as the back-end. Authentication to UserApp is handled from the front-end by the UserApp module, while authorization to the back-end API is done by providing the session token with a cookie. The [UserApp Passport strategy](https://github.com/userapp-io/userapp-angular) is then validating the session token before authorizing the API calls.
 
 ## Getting Started
 
