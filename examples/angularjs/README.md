@@ -22,7 +22,7 @@ Example with AngularJS as the front-end and Node.js+Passport as the back-end. Au
 
 ## Help
 
-Contact us via email at support@userapp.io or visit our [support center](https://help.userapp.io).
+Contact us via email at support@userapp.io or visit our [support center](https://help.userapp.io). You can also see the [UserApp documentation](https://app.userapp.io/#/docs/) for more information.
 
 ## License
 
