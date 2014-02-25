@@ -118,6 +118,8 @@ For a complete, working example, refer to the [login example](https://github.com
 
 For an example using AngularJS as front-end, refer to the [AngularJS example](https://github.com/userapp-io/passport-userapp/tree/master/examples/angularjs).
 
+For an example with stateless sessions, refer to the [stateless-login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/stateless-login).
+
 ## Related Modules
 
 - [userapp-nodejs](https://github.com/userapp-io/userapp-nodejs) — Node.js client for accessing the UserApp API

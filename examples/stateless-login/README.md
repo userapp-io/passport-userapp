@@ -1,4 +1,4 @@
-# Passport-UserApp - Example with stateless login
+# Passport-UserApp - Example with stateless server session
 
 <https://github.com/userapp-io/passport-userapp>
 
