@@ -106,7 +106,7 @@ The user profile follows the [Passport Profile Schema](http://passportjs.org/gui
         lastLoginAt: unix_timestamp,
         updatedAt: unix_timestamp,
         createdAt: unix_timestamp,
-        token: 'session token'
+        token: 'session token',
         _raw: { /* raw UserApp User profile */ }
     }
     
