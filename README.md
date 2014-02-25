@@ -47,6 +47,33 @@ application:
         res.redirect('/');
       });
 
+**Stateless Server Sessions**
+
+To make your server stateless (i.e. you could restart your server without logging out your users), just save the UserApp session token in a cookie named `ua_session_token`:
+
+    app.post('/login', 
+      passport.authenticate('userapp', { failureRedirect: '/login' }),
+      function(req, res) {
+        res.cookie('ua_session_token', req.user.token);
+        res.redirect('/');
+      });
+
+Don't forget to delete it when logging out:
+
+    app.get('/logout', function (req, res) {
+      req.logout();
+      res.clearCookie('ua_session_token');
+      res.redirect('/');
+    });
+
+And to protect your routes, use the `passport.authenticate()` method, like this:
+
+    app.get('/account', 
+      passport.authenticate('userapp', { failureRedirect: '/login' }), 
+      function (req, res) {
+        res.render('account', { user:req.user });
+      });
+
 #### Authenticate Requests Using a Session Token
 
 Use `passport.authenticate()`, specifying the `'userapp'` strategy, to
@@ -79,6 +106,7 @@ The user profile follows the [Passport Profile Schema](http://passportjs.org/gui
         lastLoginAt: unix_timestamp,
         updatedAt: unix_timestamp,
         createdAt: unix_timestamp,
+        token: 'session token'
         _raw: { /* raw UserApp User profile */ }
     }
     
