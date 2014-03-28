@@ -91,7 +91,7 @@ application:
 #### Authenticate Requests Using HTTP Basic Authentication
 
 Use `passport.authenticate()`, specifying the `'userapp'` strategy, to
-authenticate requests using HTTP Basic Authentication. It can be used in two ways; 1) with username and password, and 2) by leaving username empty and setting password to a token.
+authenticate requests using HTTP Basic Authentication. It can be used in two ways; 1) with a username and password, or 2) by leaving username empty and setting password to a token.
 
 #### User Profile
 
@@ -124,6 +124,8 @@ For a complete, working example, refer to the [login example](https://github.com
 For an example using AngularJS as front-end, refer to the [AngularJS example](https://github.com/userapp-io/passport-userapp/tree/master/examples/angularjs).
 
 For an example with stateless sessions, refer to the [stateless-login example](https://github.com/userapp-io/passport-userapp/tree/master/examples/stateless-login).
+
+For an example with HTTP Basic Authentication, refer to the [http-basic-auth example](https://github.com/userapp-io/passport-userapp/tree/master/examples/http-basic-auth).
 
 ## Related Modules
 
