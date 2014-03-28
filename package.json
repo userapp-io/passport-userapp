@@ -1,6 +1,6 @@
 {
   "name": "passport-userapp",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Password and token authentication strategy using UserApp for Passport",
   "homepage": "https://github.com/userapp-io/passport-userapp",
   "author": {

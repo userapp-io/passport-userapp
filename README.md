@@ -88,6 +88,11 @@ application:
         res.send({ user: req.user });
       });
 
+#### Authenticate Requests Using HTTP Basic Authentication
+
+Use `passport.authenticate()`, specifying the `'userapp'` strategy, to
+authenticate requests using HTTP Basic Authentication. It can be used in two ways; 1) with username and password, and 2) by leaving username empty and setting password to a token.
+
 #### User Profile
 
 The user profile follows the [Passport Profile Schema](http://passportjs.org/guide/profile/) when available. Some fields are added to contain all information from the [UserApp User entity](https://app.userapp.io/#/docs/user/#properties).
