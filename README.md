@@ -22,16 +22,18 @@ The userapp authentication strategy authenticates users using either a username 
 password or a session token via a REST call to UserApp. The strategy requires a `verify` callback, which accepts these
 credentials and calls `done` providing a user. To be able to use this strategy, you need a [UserApp account](https://app.userapp.io/#/sign-up/), with an [App Id](https://help.userapp.io/customer/portal/articles/1322336-how-do-i-find-my-app-id-).
 
-    passport.use(new UserAppStrategy({
-            appId: 'YOU-USERAPP-APP-ID'
-        },
-        function (userprofile, done) {
-            Users.findOrCreate(userprofile, function(err,user) {
-                if(err) return done(err);
+```javascript
+passport.use(new UserAppStrategy({
+        appId: 'YOU-USERAPP-APP-ID'
+    },
+    function (userprofile, done) {
+        Users.findOrCreate(userprofile, function(err,user) {
+            if(err) return done(err);
                 return done(null, user);
             });
         }
     ));
+```
 
 #### Authenticate Requests Using Username/Password
 
@@ -41,38 +43,46 @@ authenticate requests using a username and password. The username and password s
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.post('/login', 
-      passport.authenticate('userapp', { failureRedirect: '/login' }),
-      function(req, res) {
+```javascript
+app.post('/login', 
+    passport.authenticate('userapp', { failureRedirect: '/login' }),
+    function(req, res) {
         res.redirect('/');
-      });
+    });
+```
 
 **Stateless Server Sessions**
 
 To make your server stateless (i.e. you could restart your server without logging out your users), just save the UserApp session token in a cookie named `ua_session_token`:
 
-    app.post('/login', 
-      passport.authenticate('userapp', { failureRedirect: '/login' }),
-      function(req, res) {
+```javascript
+app.post('/login', 
+    passport.authenticate('userapp', { failureRedirect: '/login' }),
+    function(req, res) {
         res.cookie('ua_session_token', req.user.token);
         res.redirect('/');
-      });
+    });
+```
 
 Don't forget to delete it when logging out:
 
-    app.get('/logout', function (req, res) {
-      req.logout();
-      res.clearCookie('ua_session_token');
-      res.redirect('/');
-    });
+```javascript
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.clearCookie('ua_session_token');
+    res.redirect('/');
+});
+```
 
 And to protect your routes, use the `passport.authenticate()` method, like this:
 
-    app.get('/account', 
-      passport.authenticate('userapp', { failureRedirect: '/login' }), 
-      function (req, res) {
+```javascript
+app.get('/account', 
+    passport.authenticate('userapp', { failureRedirect: '/login' }), 
+    function (req, res) {
         res.render('account', { user:req.user });
-      });
+    });
+```
 
 #### Authenticate Requests Using a Session Token
 
@@ -82,11 +92,13 @@ authenticate requests using a session token. The token should be sent as a cooki
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.post('/api/call', passport.authenticate('userapp'),
-      function(req, res) {
+```javascript
+app.post('/api/call', passport.authenticate('userapp'),
+    function(req, res) {
         // Return some relevant data, for example the logged in user, articles, etc.
         res.send({ user: req.user });
-      });
+    });
+```
 
 #### Authenticate Requests Using HTTP Basic Authentication
 
@@ -97,23 +109,25 @@ authenticate requests using HTTP Basic Authentication. It can be used in two way
 
 The user profile follows the [Passport Profile Schema](http://passportjs.org/guide/profile/) when available. Some fields are added to contain all information from the [UserApp User entity](https://app.userapp.io/#/docs/user/#properties).
 
-    { 
-        provider: 'userapp',
-        id: 'user_id',
-        username: 'login',
-        name: { familyName: 'last_name', givenName: 'first_name' },
-        email: 'email',
-        emails: [ { value: 'email' } ],
-        permissions: { permissionName: { value: boolean, override: boolean } },
-        features: { featureName: { value: boolean, override: boolean } },
-        properties: { propertyName: { value: mixed, override: boolean } },
-        subscription: { price_list_id: 'string', plan_id: 'string', override: boolean },
-        lastLoginAt: unix_timestamp,
-        updatedAt: unix_timestamp,
-        createdAt: unix_timestamp,
-        token: 'session token',
-        _raw: { /* raw UserApp User profile */ }
-    }
+```javascript
+{
+    provider: 'userapp',
+    id: 'user_id',
+    username: 'login',
+    name: { familyName: 'last_name', givenName: 'first_name' },
+    email: 'email',
+    emails: [ { value: 'email' } ],
+    permissions: { permissionName: { value: boolean, override: boolean } },
+    features: { featureName: { value: boolean, override: boolean } },
+    properties: { propertyName: { value: mixed, override: boolean } },
+    subscription: { price_list_id: 'string', plan_id: 'string', override: boolean },
+    lastLoginAt: unix_timestamp,
+    updatedAt: unix_timestamp,
+    createdAt: unix_timestamp,
+    token: 'session token',
+    _raw: { /* raw UserApp User profile */ }
+}
+```
     
 Please note that when working with the [UserApp API](https://app.userapp.io/#/docs/), you will need to create a new user object according to the [User entity](https://app.userapp.io/#/docs/user/#properties). For example `username` => `login`.
 
